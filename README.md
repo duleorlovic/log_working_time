@@ -26,30 +26,32 @@ Here are instructions for installing on Ubuntu 12.10
 Set up database and table
 
     mysql -uroot -ppassword -e "CREATE DATABASE working_time"
-    mysql -uroot -ppassword working_time -e "CREATE TABLE working_time ( start time NOT NULL, end time NOT NULL, itWasABrake tinyint(1) NOT NULL DEFAULT 0, ID int(11) NOT NULL AUTO_INCREMENT, PRIMARY KEY (ID));"
+    mysql -uroot -ppassword working_time -e "CREATE TABLE working_time ( date date NOT NULL, start time NOT NULL, end time NOT NULL, itWasABrake tinyint(1) NOT NULL DEFAULT 0, ID int(11) NOT NULL AUTO_INCREMENT, PRIMARY KEY (ID));"
     
 Set up and start Selenium
 
     sudo pip install -U selenium # --proxy="user:password@server:port"
     wget http://selenium.googlecode.com/files/selenium-server-standalone-2.28.0.jar 
 
-Create two startup (scripts](http://askubuntu.com/questions/64222/how-can-i-create-launchers-on-my-desktop)
+Create two startup [scripts](http://askubuntu.com/questions/64222/how-can-i-create-launchers-on-my-desktop)
 
     sudo apt-get install --no-install-recommends gnome-panel
+    mkdir ~/.config/autostart
     gnome-desktop-item-edit --create-new ~/.config/autostart/
-    
-for first set Name: **java** and second Name: **ssTriger**
+    # Name: **selenium** and Command: `java -jar /path_to_the_file/selenium-server-standalone-2.20.0.jar`
+    gnome-desktop-item-edit --create-new ~/.config/autostart/
+    # Name: **ssTriger** and Command: `/path_to_the_file/ssTriger.py`
 
-Create (shortcuts)[http://askubuntu.com/questions/64222/how-can-i-create-launchers-on-my-desktop] 
+Create shortcut on Desktop when we want to mark pause as break:
 
     gnome-desktop-item-edit --create-new ~/Desktop
-    
-Set up unlocking password: `All Settings->Brightness and Lock->"Require my password when waking from suspend"`. 
+    # Name: **break**, Command: `/path_to_the_file/log_working_time.py break`
 
-Settings
-================
+You can set up unlocking password: `All Settings->Brightness and Lock->"Require my password when waking from suspend"`. 
+
 There are three places in `log_working_time.py` that need to be adjusted
-* password for mysql
+* password for mysql https://github.com/duleorlovic/log_working_time/blob/master/ssTriger.py#L28
+* 
 * target field and password for webform
 * whether total working time should be reduced with minimum lunch break (30 min)
 
