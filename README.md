@@ -33,8 +33,9 @@ Set up and start Selenium
     sudo pip install -U selenium # --proxy="user:password@server:port"
     wget http://selenium.googlecode.com/files/selenium-server-standalone-2.28.0.jar 
 
-Create two startup scripts
+Create two startup (scripts](http://askubuntu.com/questions/64222/how-can-i-create-launchers-on-my-desktop)
 
+    sudo apt-get install --no-install-recommends gnome-panel
     gnome-desktop-item-edit --create-new ~/.config/autostart/
     
 for first set Name: **java** and second Name: **ssTriger**
