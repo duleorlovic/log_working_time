@@ -14,6 +14,10 @@ When user come back from the break, he/she should run `log_working_time.py break
 
 Install
 ================
+You can download with
+
+    git clone 
+
 Here are instructions for installing on Ubuntu 12.10
 
     sudo apt-get install default-jre python-mysqldb python-pip mysql-server
