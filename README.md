@@ -57,3 +57,5 @@ There are three places in `log_working_time.py` that need to be adjusted
 * target option value [log_working_time.py#L90](https://github.com/duleorlovic/log_working_time/blob/master/log_working_time.py#L90)
 * whether total working time should be reduced with minimum lunch break (30 min) [log_working_time.py#L73](https://github.com/duleorlovic/log_working_time/blob/master/log_working_time.py#L73)
 
+Test if everything works well. In one console run `/path_to_the_file/ssTriger.py` and in another `/path_to_the_file/log_working_time.py`.
+`/path_to_the_file/log_working_time.py` can accept three arguments {summarize|break|ignore_last_record}.
