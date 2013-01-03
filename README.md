@@ -17,7 +17,7 @@ You can download with
 
     git clone https://github.com/duleorlovic/log_working_time.git
 
-On Ubuntu 12.10 you should have these packages (for mysql password use *password*)
+On Ubuntu 12.10 you should have these packages (for mysql password use *password* or whatever you want)
 
     sudo apt-get install default-jre python-mysqldb python-pip mysql-server
     # set the password="password"
@@ -54,6 +54,6 @@ There are three places in `log_working_time.py` that need to be adjusted
 [log_working_time.py#L21](https://github.com/duleorlovic/log_working_time/blob/master/log_working_time.py#L21) and
 [ssTriger.py#L28](https://github.com/duleorlovic/log_working_time/blob/master/ssTriger.py#L28)
 * user and password for web form [log_working_time.py#L85](https://github.com/duleorlovic/log_working_time/blob/master/log_working_time.py#L85)
-* target field [log_working_time.py#L90](https://github.com/duleorlovic/log_working_time/blob/master/log_working_time.py#L90)
+* target option value [log_working_time.py#L90](https://github.com/duleorlovic/log_working_time/blob/master/log_working_time.py#L90)
 * whether total working time should be reduced with minimum lunch break (30 min) [log_working_time.py#L73](https://github.com/duleorlovic/log_working_time/blob/master/log_working_time.py#L73)
 
