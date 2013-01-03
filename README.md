@@ -62,11 +62,13 @@ Create crontab job to fill web form each working day at 23h
 You can set up unlocking password: `All Settings->Brightness and Lock->"Require my password when waking from suspend"`. 
 
 Test if everything works well. In one console run `/path_to_the_file/ssTriger.py`, 
-in second watch log file `tail -f /tmp/log_working.time.log` and in third start filling web form `/path_to_the_file/log_working_time.py`.
+in second watch log file `tail -f /tmp/log_working.time.log`, in third run `java -jar /path_to_the_file/selenium-server-standalone-2.28.0.jar`
+and in forth start filling web form `/path_to_the_file/log_working_time.py ignore_last_record`.
 
 `/path_to_the_file/log_working_time.py` can accept three arguments {summarize|break|ignore_last_record}.
  * **summarize** prints out all todays locking/unlocking times and total work so far. It can be used if you want to check whether you already reached eight our work time.
  * **break** is used to mark last pause as break. It is used in desktop shortcut.
  * **ignore_last_record** is used to test filling web form with selenium. Filling web form should be done only when screen is locked (using cron tab job) but for testing we can try with this argument.
+If some value is filled to the web form then remove it and close all consoles that you have opened to test this.
 
-Restart, forget wtis and move on to the real programming tasks.
+Restart, forget work time and move on to the real programming tasks.
