@@ -32,6 +32,14 @@ Download [Selenium](http://pypi.python.org/pypi/selenium)
     sudo pip install -U selenium # --proxy="user:password@server:port"
     wget http://selenium.googlecode.com/files/selenium-server-standalone-2.28.0.jar 
 
+There are three places in `log_working_time.py` that need to be adjusted
+* password for mysql
+[log_working_time.py#L21](https://github.com/duleorlovic/log_working_time/blob/master/log_working_time.py#L21) and
+[ssTriger.py#L28](https://github.com/duleorlovic/log_working_time/blob/master/ssTriger.py#L28)
+* user and password for web form [log_working_time.py#L85](https://github.com/duleorlovic/log_working_time/blob/master/log_working_time.py#L85)
+* target option value [log_working_time.py#L90](https://github.com/duleorlovic/log_working_time/blob/master/log_working_time.py#L90)
+* whether total working time should be reduced with minimum lunch break (30 min) [log_working_time.py#L73](https://github.com/duleorlovic/log_working_time/blob/master/log_working_time.py#L73)
+
 Create two [startup scripts on Ubuntu](http://askubuntu.com/questions/64222/how-can-i-create-launchers-on-my-desktop),
 one for selenium and one for ssTriger
 
@@ -47,15 +55,18 @@ Create Desktop shortcut to use when we want to mark previous pause as break in w
     gnome-desktop-item-edit --create-new ~/Desktop
     # Name: **break**, Command: `/path_to_the_file/log_working_time.py break`
 
+Create crontab job to fill web form each working day at 23h
+
+    crontab: 0 23 * * 1-5 /path_to_the/log_working_time.py > /dev/null
+    
 You can set up unlocking password: `All Settings->Brightness and Lock->"Require my password when waking from suspend"`. 
 
-There are three places in `log_working_time.py` that need to be adjusted
-* password for mysql
-[log_working_time.py#L21](https://github.com/duleorlovic/log_working_time/blob/master/log_working_time.py#L21) and
-[ssTriger.py#L28](https://github.com/duleorlovic/log_working_time/blob/master/ssTriger.py#L28)
-* user and password for web form [log_working_time.py#L85](https://github.com/duleorlovic/log_working_time/blob/master/log_working_time.py#L85)
-* target option value [log_working_time.py#L90](https://github.com/duleorlovic/log_working_time/blob/master/log_working_time.py#L90)
-* whether total working time should be reduced with minimum lunch break (30 min) [log_working_time.py#L73](https://github.com/duleorlovic/log_working_time/blob/master/log_working_time.py#L73)
+Test if everything works well. In one console run `/path_to_the_file/ssTriger.py`, 
+in second watch log file `tail -f /tmp/log_working.time.log` and in third start filling web form `/path_to_the_file/log_working_time.py`.
 
-Test if everything works well. In one console run `/path_to_the_file/ssTriger.py` and in another `/path_to_the_file/log_working_time.py`.
 `/path_to_the_file/log_working_time.py` can accept three arguments {summarize|break|ignore_last_record}.
+ * **summarize** prints out all todays locking/unlocking times and total work so far. It can be used if you want to check whether you already reached eight our work time.
+ * **break** is used to mark last pause as break. It is used in desktop shortcut.
+ * **ignore_last_record** is used to test filling web form with selenium. Filling web form should be done only when screen is locked (using cron tab job) but for testing we can try with this argument.
+
+Restart, forget wtis and move on to the real programming tasks.
